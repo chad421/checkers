@@ -1,0 +1,72 @@
+:root {
+    --bg-dark: #1f1f1f;
+    --bg-medium: #333333;
+    --bg-light: #424242;
+    --font-color: #bebdb1;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-optical-sizing: auto;
+    font-variation-settings:"width" 100;
+    font-family: Bricolage Grotesque,sans-serif;
+    font-style: normal;
+    background-color: var(--bg-dark);
+    color: var(--font-color);
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    background-color: var(--bg-medium);
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+.game-container {
+    display: grid;
+    grid-template-columns: repeat(8, 100px);
+    grid-template-rows: repeat(8, 100px);
+    width: fit-content;
+    margin: auto;
+    margin-top: 5rem;
+    outline: 2px solid var(--bg-light);
+}
+
+.slot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slot-light {
+    background-color: var(--font-color);
+}
+
+.slot-dark {
+    background-color: var(--bg-light);
+}
+
+.peice {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+}
+
+.peice-dark {
+    background-color: var(--bg-light);
+    
+}
+
+.peice-light {
+    background-color: var(--font-color);
+}
