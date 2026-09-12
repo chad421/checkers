@@ -1,4 +1,5 @@
 :root {
+    /*Declares CSS variables*/
     --bg-dark: #1f1f1f;
     --bg-medium: #333333;
     --bg-light: #424242;
