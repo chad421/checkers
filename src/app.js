@@ -1,5 +1,6 @@
 const gameContainer = document.getElementById("checker-board")
 const SLOTS = 64
+let count = 1
 
 
 
@@ -13,42 +14,15 @@ function createBoard() {
     for(let i = 0; i < SLOTS; i++) {
         // Template variables to populate game container
         const slot = document.createElement("div")
-        const peice = document.createElement("a")
+        const piece = document.createElement("a")
+
+        slot.id = i + 1
 
         // Calculates row and column from a 
         const numRows = Math.sqrt(SLOTS)
         const row = Math.floor(i/numRows)
         const col = i % numRows
 
-        // assign coordinate to slot id: A1, H3, B2, etc.
-        switch(row) {
-            case 0:
-                slot.id = `H${col + 1}`
-                break;
-            case 1:
-                slot.id = `G${col + 1}`
-                break;
-            case 2:
-                slot.id = `F${col + 1}`
-                break;
-            case 3:
-                slot.id = `E${col + 1}`
-                break;
-            case 4:
-                slot.id = `D${col + 1}`
-                break;
-            case 5:
-                slot.id = `C${col + 1}`
-                break;
-            case 6:
-                slot.id = `B${col + 1}`
-                break;
-            case 7:
-                slot.id = `A${col + 1}`
-                break;
-            default:
-                alert("Something has gone very, very wrong")
-        }
 
         if((row + col) % 2 == 0) {
             slot.className = "slot slot-light"
@@ -57,13 +31,13 @@ function createBoard() {
         }
 
         if((i <= 24) && (row + col) % 2 == 0) {
-            peice.className = "peice peice-dark"
-            slot.append(peice)
+            piece.className = "piece piece-dark"
+            slot.append(piece)
         }
 
         if((i >= 40) && (row + col) % 2 != 0) {
-            peice.className = "peice peice-light"
-            slot.append(peice)
+            piece.className = "piece piece-light"
+            slot.append(piece)
         }
 
         gameContainer.append(slot)
@@ -77,8 +51,22 @@ function createBoard() {
         e.currentTarget returns a copy of the parents element
         */
 
-        console.log(e.target.closest("div"))
-        
+        const clicked = e.target.closest("div")
+
+        // Checks if a peice is not on the clicked slot
+        if(!clicked.querySelector("a")) {
+            console.log("invalid click")
+        } else {
+            console.log("valid click!")
+        }
+
+        // Checks if slot is on the edge
+        if(Number(clicked.id) % 8 === 0) {
+            console.log("You clicked a slot on the rightmost edge!")
+        } else if (Number(clicked.id) % 8 === 1) {
+            console.log("You clicked on a slot on the leftmost edge!")
+        }
+
     })
 }
 

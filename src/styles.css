@@ -56,17 +56,21 @@ a:hover {
     background-color: var(--bg-light);
 }
 
-.peice {
+.piece {
     height: 50px;
     width: 50px;
     border-radius: 100%;
 }
 
-.peice-dark {
+.piece-dark {
     background-color: var(--bg-light);
     
 }
 
-.peice-light {
+.piece-light {
     background-color: var(--font-color);
+}
+
+#selected {
+    outline: 5px solid lightblue
 }
