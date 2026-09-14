@@ -4,6 +4,8 @@
     --bg-medium: #333333;
     --bg-light: #424242;
     --font-color: #bebdb1;
+    --light-peice: #d0cfcf;
+    --dark-peice: #181818;
 }
 
 * {
@@ -64,12 +66,12 @@ a:hover {
 }
 
 .piece-dark {
-    background-color: var(--bg-light);
+    background-color: var(--dark-peice);
     
 }
 
 .piece-light {
-    background-color: var(--font-color);
+    background-color: var(--light-peice);
 }
 
 #selected {
