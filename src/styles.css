@@ -1,11 +1,22 @@
 :root {
-    /*Declares CSS variables*/
+    /*Colors*/
     --bg-dark: #1f1f1f;
     --bg-medium: #333333;
     --bg-light: #424242;
     --font-color: #bebdb1;
     --light-peice: #d0cfcf;
     --dark-peice: #181818;
+
+    /*Sizes*/
+    --slot-size: 75px;
+    --peice-size: 40px;
+}
+
+@media screen and (max-width: 600px) {
+    :root{
+        --slot-size: 40px;
+        --peice-size: 25px;
+    }
 }
 
 * {
@@ -37,8 +48,8 @@ a:hover {
 
 .game-container {
     display: grid;
-    grid-template-columns: repeat(8, 100px);
-    grid-template-rows: repeat(8, 100px);
+    grid-template-columns: repeat(8, var(--slot-size));
+    grid-template-rows: repeat(8, var(--slot-size));
     width: fit-content;
     margin: auto;
     margin-top: 5rem;
@@ -60,8 +71,8 @@ a:hover {
 }
 
 .piece {
-    height: 50px;
-    width: 50px;
+    height: var(--peice-size);
+    width: var(--peice-size);
     border-radius: 100%;
 }
 
