@@ -2,12 +2,6 @@ const gameContainer = document.getElementById("checker-board")
 const SLOTS = 64
 let count = 1
 
-
-
-/*
-VIEW
-*/
-
 function createBoard() {
 
     // Generate board and id values
@@ -50,7 +44,7 @@ function createBoard() {
     gameContainer.addEventListener("click", function (e) {
         const clicked = e.target.closest("div")
         
-        // Checks if peice is on the slot clicked
+        // Checks if peice/<a> is on the slot/<div> clicked
         if(!clicked.querySelector("a")) {
             console.log("invalid click")
         }
