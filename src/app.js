@@ -25,12 +25,13 @@ function createBoard() {
             slot.className = "slot slot-dark"
         }
 
-        // Sets the top pieces to dark, bottom pieces to light
+        // Sets top pieces to dark
         if((i <= 24) && (row + col) % 2 == 0) {
             piece.className = "piece piece-dark"
             slot.append(piece)
         }
 
+        // Sets bottom pieces to light
         if((i >= 40) && (row + col) % 2 != 0) {
             piece.className = "piece piece-light"
             slot.append(piece)
@@ -43,23 +44,45 @@ function createBoard() {
     // Add event listener for board
     gameContainer.addEventListener("click", function (e) {
         const clicked = e.target.closest("div")
+        const clickedPiece = clicked.firstElementChild
         
         // Checks if peice/<a> is on the slot/<div> clicked
         if(!clicked.querySelector("a")) {
             console.log("invalid click")
+            return
         }
 
-        // How many spaces from a peice to move left or right
-        const SPACES_LEFT = Number(clicked.id) + 7
-        const SPACES_RIGHT = Number(clicked.id) + 9
+        // Spaces left and right relative to a dark piece
+        let SPACES_LEFT = Number(clicked.id) + 7
+        let SPACES_RIGHT = Number(clicked.id) + 9
 
-        // Checks if peice is on the edge
+        // Flip logic if white piece
+        if(clickedPiece.className === "piece piece-light") {
+            SPACES_LEFT = Number(clicked.id) - 9
+            SPACES_RIGHT = Number(clicked.id) - 7
+        }
+
+        // Select slots to left and right of clicked slot
+        const left_slot = document.getElementById(String(SPACES_LEFT))
+        const right_slot = document.getElementById(String(SPACES_RIGHT))
+
+        // Checks if peice is on the right edge
         if(Number(clicked.id) % 8 === 0) {
             console.log("You clicked a slot on the rightmost edge!")
-        } else if (Number(clicked.id) % 8 === 1) {
-            console.log("You clicked on a slot on the leftmost edge!")
+            left_slot.style.backgroundColor = "lightblue"
+            return
         }
 
+        // Checks if peice is on the left edge
+        if (Number(clicked.id) % 8 === 1) {
+            console.log("You clicked on a slot on the leftmost edge!")
+            right_slot.style.backgroundColor = "lightblue"
+            return
+        }
+
+        // Not an edge piece, show both valid moves
+        left_slot.style.backgroundColor = "lightblue"
+        right_slot.style.backgroundColor = "lightblue"
     })
 }
 
