@@ -4,18 +4,18 @@
     --bg-medium: #333333;
     --bg-light: #424242;
     --font-color: #bebdb1;
-    --light-peice: #d0cfcf;
-    --dark-peice: #181818;
+    --light-piece: #d0cfcf;
+    --dark-piece: #181818;
 
     /*Sizes*/
     --slot-size: 75px;
-    --peice-size: 40px;
+    --piece-size: 40px;
 }
 
 @media screen and (max-width: 600px) {
     :root{
         --slot-size: 40px;
-        --peice-size: 25px;
+        --piece-size: 25px;
     }
 }
 
@@ -71,20 +71,20 @@ a:hover {
 }
 
 .piece {
-    height: var(--peice-size);
-    width: var(--peice-size);
+    height: var(--piece-size);
+    width: var(--piece-size);
     border-radius: 100%;
 }
 
 .piece-dark {
-    background-color: var(--dark-peice);
+    background-color: var(--dark-piece);
     
 }
 
 .piece-light {
-    background-color: var(--light-peice);
+    background-color: var(--light-piece);
 }
 
 #selected {
-    outline: 5px solid lightblue
+    outline: 5px solid lightblue;
 }
