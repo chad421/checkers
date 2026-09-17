@@ -48,33 +48,28 @@ function createBoard() {
 
         /* NEW CODE */
 
-        // Checks if slot/<div> is ready to move a peice
+        // Checks if slot/<div> is ready to move a piece
         if(clicked.style.backgroundColor === "lightblue") {
             const clickedId = clicked.id
-
-            console.log(Number(clickedId) + 2)
-            // Check spots to the left and right if they are also selected
             const checkLeft = document.getElementById(String(clickedId - 2))
             const checkRight = document.getElementById(String(Number(clickedId) + 2))
 
-            console.log(checkLeft)
-            console.log(checkRight)
+            // Clears clicked/selected/"lightblue" slots
+            clicked.style.backgroundColor = ""
+            checkLeft.style.backgroundColor = ""
+            checkRight.style.backgroundColor = ""
 
-            if(checkLeft.style.backgroundColor === "lightblue") {
-                checkLeft.style.backgroundColor = ""
-            } 
-            if (checkRight.style.backgroundColor === "lightblue") {
-                checkRight.style.backgroundColor = ""
+            // Selects old piece, makes new piece
+            const oldPiece = document.getElementById("old-piece")
+            const newPiece = document.createElement("a")
+            
+            if(oldPiece.className === "piece piece-light") {
+                newPiece.className = "piece piece-light"
             }
 
-            clicked.style.backgroundColor = ""
-
-
-            const oldId = clicked.id - 7
-            const oldSlot = document.getElementById(String(oldId))
-            const oldPiece = oldSlot.firstElementChild
-            const newPiece = document.createElement("a")
-            newPiece.className = "piece piece-dark"
+            if(oldPiece.className === "piece piece-dark") {
+                newPiece.className = "piece piece-dark"
+            }
 
             clicked.append(newPiece)
 
