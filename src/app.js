@@ -77,14 +77,15 @@ function createBoard() {
 
             return
         }
-
-        /* END NEW CODE */
         
-        // Checks if peice/<a> is on the slot/<div> clicked
+        // Checks if no piece/<a> is on the slot/<div> clicked and returns
         if(!clicked.querySelector("a")) {
             console.log("invalid click")
             return
         }
+
+        // Sets piece id to old-piece, to remember which one to delete when the piece is moved
+        clickedPiece.id = "old-piece"
 
         // Spaces left and right relative to a dark piece
         let SPACES_LEFT = Number(clicked.id) + 7
@@ -96,32 +97,42 @@ function createBoard() {
             SPACES_RIGHT = Number(clicked.id) - 7
         }
 
-        // Select slots to left and right of clicked slot
+        // Select movable slots to left and right of clicked slot
         const leftSlot = document.getElementById(String(SPACES_LEFT))
         const rightSlot = document.getElementById(String(SPACES_RIGHT))
+        const leftPiece = leftSlot.firstElementChild
+        const rightPiece = rightSlot.firstElementChild
 
-        // Checks if peice is on the right edge
-        if(Number(clicked.id) % 8 === 0) {
+        // Checks if piece is on the right edge and empty, highlights left slot
+        if(leftSlot.firstElementChild === null && Number(clicked.id) % 8 === 0) {
             console.log("You clicked a slot on the rightmost edge!")
             leftSlot.style.backgroundColor = "lightblue"
             return
         }
 
-        // Checks if peice is on the left edge
-        if (Number(clicked.id) % 8 === 1) {
+        // Checks if piece is on the left edge and empty, hightlights right slot
+        if(rightSlot.firstElementChild === null && Number(clicked.id) % 8 === 1) {
             console.log("You clicked on a slot on the leftmost edge!")
             rightSlot.style.backgroundColor = "lightblue"
             return
         }
 
-        // Checks if clicking an available/lightblue slot
-        if(clicked.style.backgroundColor === "lightblue") {
-            console.log("clicked a light blue square")
+        // Checks if both slots are null, highlights both slots
+        if(leftSlot.firstElementChild === null && rightSlot.firstElementChild === null) {
+            console.log("Both slots null!")
+            leftSlot.style.backgroundColor = "lightblue"
+            rightSlot.style.backgroundColor = "lightblue"
+            return
         }
 
-        // Not an edge piece, show both valid moves
-        leftSlot.style.backgroundColor = "lightblue"
-        rightSlot.style.backgroundColor = "lightblue"
+        // Checks if there is an opposing color piece and highlights the slot if so
+        if(clickedPiece.className === "piece piece-dark" && rightPiece.className === "piece piece-light") {
+            rightSlot.style.backgroundColor = "lightblue"
+        }
+
+        if(clickedPiece.className === "piece piece-dark" && leftPiece.className === "piece piece-light") {
+            leftSlot.style.backgroundColor = "lightblue"
+        }
     })
 }
 
