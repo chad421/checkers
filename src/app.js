@@ -26,7 +26,7 @@ function createBoard() {
         }
 
         // Sets top pieces to dark
-        if((i <= 24) && (row + col) % 2 == 0) {
+        if((i <= 23) && (row + col) % 2 != 0) {
             piece.className = "piece piece-dark"
             slot.append(piece)
         }
