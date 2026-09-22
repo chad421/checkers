@@ -1,6 +1,8 @@
 const gameContainer = document.getElementById("checker-board")
+let lightPoints = document.getElementById("light-points")
+let darkPoints = document.getElementById("dark-points")
+
 const SLOTS = 64
-let count = 1
 
 function createBoard() {
 
@@ -69,6 +71,15 @@ function createBoard() {
 
             if(oldPiece.className === "piece piece-dark") {
                 newPiece.className = "piece piece-dark"
+            }
+
+            if(clicked.firstElementChild != newPiece && clicked.firstElementChild != null) {
+                clicked.firstElementChild.remove()
+                if(newPiece.className === "piece light-piece"){
+                    lightPoints.innerHTML = "1"
+                } else {
+                    darkPoints.innerHTML = "1"
+                }
             }
 
             clicked.append(newPiece)
